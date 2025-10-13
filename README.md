@@ -9,6 +9,7 @@
 ![SIEM](https://img.shields.io/badge/SIEM-Splunk%2FELK-green?style=flat-square&logo=splunk)
 ![Python](https://img.shields.io/badge/Language-Python-yellow?style=flat-square&logo=python)
 ![Bash](https://img.shields.io/badge/Scripting-Bash-lightgrey?style=flat-square&logo=gnubash)
+![Powershell](https://img.shields.io/badge/Scripting-Powershell-lightgrey?style=flat-square&logo=gnubash)
 ![Wireshark](https://img.shields.io/badge/Tools-Wireshark-blue?style=flat-square&logo=wireshark)
 
 ---
