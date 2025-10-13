@@ -1,4 +1,4 @@
-![Banner](./banner.png)
+![Banner](https://i.imgur.com/gB3UxAc.png)
 
 # 👋 Hi, I'm Festus Olise  
 🎯 *Cybersecurity Analyst | CompTIA Security+ | CySA+ Candidate*
