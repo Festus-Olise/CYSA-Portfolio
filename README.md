@@ -1,4 +1,4 @@
-![Banner]([https://i.imgur.com/gB3UxAc.png](https://github.com/Festus-Olise/CYSA-Portfolio/commit/a8ef4a570c6f4fb742306973e64b7263bad1a80b))
+![Banner](/Festus_Banner.png)
 
 # 👋 Hi, I'm Festus Olise  
 🎯 *Cybersecurity Analyst | CompTIA Security+ | CySA+ Candidate*
