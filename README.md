@@ -1,7 +1,7 @@
 ![Banner](/Festus_Banner.png)
 
 # 👋 Hi, I'm Festus Olise  
-🎯 *Cybersecurity Analyst | CompTIA Security+ | CySA+ Candidate*
+🎯 *Cybersecurity Analyst | CompTIA Security+ | CySA+
 
 ![Security+](https://img.shields.io/badge/CompTIA-Security%2B-red?style=flat-square&logo=comptia)
 ![CySA+](https://img.shields.io/badge/CompTIA-CySA%2B-blue?style=flat-square&logo=comptia)
