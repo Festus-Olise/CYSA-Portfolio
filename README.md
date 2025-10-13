@@ -32,4 +32,4 @@
 ---
 
 💬 *Connect with me:*  
-📧 [fnolise@gmail.com](mailto:fnolise@gmail.com) | 🌐 [LinkedIn](https://linkedin.com/in/festusolise)
+📧 [fnolise@gmail.com](mailto:fnolise@gmail.com) | 🌐 [LinkedIn](https://www.linkedin.com/in/festus-olise-37246658/)
