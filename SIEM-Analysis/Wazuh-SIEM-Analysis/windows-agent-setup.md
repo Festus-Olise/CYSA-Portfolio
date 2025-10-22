@@ -50,13 +50,12 @@ This guide documents the installation and configuration of the Wazuh agent on a 
 ### 2. Configure Manager Connection
 
 - Go to the **Configuration** tab
-- Set the **Manager IP** to: `192.168.56.102`
-- Leave the port as `1514` (default)
+- Set the **Manager IP** to: `192.168.56.101` # This was the server IP in my home lab.
 - Click **Save**
 
 ### 3. Start the Agent
 
-- Go to the **Service** tab
+- Go to the **Manage** tab
 - Click **Start**
 - Status should change to `Running`
 
@@ -65,16 +64,7 @@ This guide documents the installation and configuration of the Wazuh agent on a 
 ## 📊 Dashboard Confirmation
 
 - Go to **Wazuh Dashboard > Agents**
-- Windows agent should appear as **Pending**
-- Click the agent → **Accept** to activate
-
----
-
-## 🧠 Notes
-
-- No authentication key or password is required for default manager setups
-- The agent communicates over UDP port `1514`
-- Agent name defaults to the Windows hostname (can be customized)
+- Windows agent should appear as  **Active** in the Agents Summary Tab
 
 ---
 
