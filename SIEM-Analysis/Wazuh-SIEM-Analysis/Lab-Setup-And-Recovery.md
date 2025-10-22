@@ -14,11 +14,10 @@ This lab documents my hands-on experience installing and troubleshooting the Waz
 
 ## 🛠️ Environment Setup
 
-- **VM Name:** `Ubuntu_SOC`
-- **Snapshot (Pre-Install):** `Ubuntu_SOC (Pre Wazuh Clean State)`
+- **VM Name:** `socserver`
 - **OS:** Ubuntu 22.04 LTS
 - **Virtualization:** VirtualBox
-- **Network:** Bridged Adapter
+- **Network:** Host Only Adapter
 
 ---
 
