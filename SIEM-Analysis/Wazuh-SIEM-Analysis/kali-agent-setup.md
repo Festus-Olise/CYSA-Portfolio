@@ -16,8 +16,8 @@ This guide documents the manual installation and configuration of the Wazuh agen
 - **VM Name:** `Kali_SIEM`
 - **OS:** Kali Linux (Rolling)
 - **Virtualization:** VirtualBox
-- **Network:** Bridged Adapter
-- **Wazuh Manager IP:** `192.168.56.102`
+- **Network:** Host Only Adapter
+- **Wazuh Manager IP:** `192.168.56.101`
 
 ---
 
