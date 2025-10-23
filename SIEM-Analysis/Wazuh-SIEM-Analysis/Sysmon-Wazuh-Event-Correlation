@@ -1,0 +1,143 @@
+# 🧩 Week 2 – Sysmon & Wazuh Event Correlation Report
+
+**Author:** Festus Olise
+**Lab:** SOC Analyst Home Lab
+**Date:** *(10/22/2025)*
+**Platform:** Windows 10 VM + Wazuh SIEM (Ubuntu Server)
+
+---
+
+## 🎯Objective
+
+Enhance endpoint monitoring capabilities by integrating Sysmon telemetry with Wazuh SIEM to detect and analyze Windows security events. Focus on **event validation**, **custom rule correlation**, and **evidence documentation** for SOC analysis.
+
+---
+
+## 🧠 Environment Setup
+
+| Component      | Details                                                                           |
+| -------------- | --------------------------------------------------------------------------------- |
+| Windows VM     | Windows 11 (with Sysmon & Wazuh Agent installed)                               |
+| Linux VM       | Ubuntu Server (Wazuh All-in-One)                                                  |
+| Sysmon Config  | [SwiftOnSecurity Sysmon Config](https://github.com/SwiftOnSecurity/sysmon-config) |
+| Network Mode   | Host-only / Internal                                                              |
+| SIEM Dashboard | Wazuh Dashboard over HTTPS (port 443)                                             |
+
+### Configuration Highlights
+
+* Verified Wazuh agent connection and Sysmon log collection (`eventchannel` method)
+* Confirmed Sysmon Event Channel: `Microsoft-Windows-Sysmon/Operational`
+* Restarted Wazuh Agent after updates to `ossec.conf`
+* Validation via:
+
+  ```bash
+  journalctl -u wazuh-dashboard.service --no-pager | tail -30
+  ```
+
+---
+
+## 🧩 Sysmon–Wazuh Correlation Tests
+
+### **Test 1 – Suspicious Process Creation**
+
+**Sysmon Event ID:** 1
+**Goal:** Detect PowerShell and command-line abuse.
+
+**Commands Executed:**
+
+```powershell
+powershell -ExecutionPolicy Bypass -Command "Get-Process"
+cmd /c whoami
+```
+
+**Expected Behavior:**
+Sysmon logs process creation events with command-line arguments.
+
+**Wazuh Log Fields Observed:**
+
+* `event_id: 1`
+* `process_name: powershell.exe`
+* `command_line: -ExecutionPolicy Bypass`
+* `user.name: <username>`
+
+**Screenshot:** `sysmon-event1-process.png`
+
+**Analysis:**
+
+> PowerShell command execution detected with policy bypass — indicative of potential defense evasion or malicious script execution.
+
+---
+
+### **Test 2 – Unauthorized File Creation**
+
+**Sysmon Event ID:** 11
+**Goal:** Detect file creation in sensitive system paths.
+
+**Commands Executed:**
+
+```powershell
+echo "Confidential Data" > C:\Windows\System32\secrets.txt
+```
+
+**Expected Behavior:**
+Sysmon logs file creation events within protected directories.
+
+**Wazuh Log Fields Observed:**
+
+* `event_id: 11`
+* `target_filename: C:\Windows\System32\secrets.txt`
+* `process_guid: <GUID>`
+* `user: <username>`
+
+**Screenshot:** `sysmon-event11-filecreate.png`
+
+**Analysis:**
+
+> Unauthorized file creation in a restricted folder — possible privilege escalation or persistence mechanism.
+
+---
+
+## 🧮 Wazuh Validation Steps
+
+1. Navigate to **Threat Hunting → Events**
+   Search: `rule.groups:sysmon`
+2. Review event fields for IDs 1, 3, and 11.
+3. Confirm log parsing from Sysmon via Wazuh decoders.
+4. Cross-reference alerts in `sysmon_rules.xml` and `sysmon_decoders.xml`.
+5. Export sample alerts to `alerts.json` for recordkeeping.
+
+---
+
+## 📊 Findings Summary
+
+| Event ID | Description                    | Detection           | Status    |
+| -------- | ------------------------------ | ------------------- | --------- |
+| 1        | Process creation (PowerShell)  | ✅ Detected in Wazuh | Confirmed |
+| 11       | File creation in protected dir | ✅ Detected          | Confirmed |
+
+---
+
+## 📘 Lessons Learned
+
+* Sysmon enhances endpoint visibility for SOC operations.
+* Wazuh’s correlation rules successfully translate raw Sysmon data into actionable detections.
+
+---
+
+## 🗂️ Evidence Folder 
+
+```
+CYSA-Portfolio/SIEM-Analysis/Wazuh-SIEM-Analysis/screenshots/
+├── sysmon-event1.1-process.png
+├── sysmon-event1.2-process.png
+├── sysmon_event2.1_file_create.png
+└── sysmon_event2.2_file_create.png
+```
+
+---
+
+## 📚 References
+
+* [Sysmon Documentation – Microsoft](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)
+* [Wazuh Sysmon Integration Guide](https://documentation.wazuh.com/current/user-manual/capabilities/system-monitoring/sysmon.html)
+* [SwiftOnSecurity Sysmon Config](https://github.com/SwiftOnSecurity/sysmon-config)
